@@ -1,0 +1,175 @@
+.TH "/home/rado/workspace/rdwget/src/linkparser.h" 3 "26 Feb 2009" "Version 1.0" "RDWGET" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/rado/workspace/rdwget/src/linkparser.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'defaults.h'\fP
+.br
+
+.SS "Defines"
+
+.in +1c
+.ti -1c
+.RI "#define \fBLINK_REGEXP\fP   '^(http://)?([^/]+)(/(([^/]+/)*([^/]+))?)?$'"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBstrtoprot\fP (char *str, \fBprotocols\fP *prots)"
+.br
+.RI "\fIConverts string in str to protocols type contained in prots. \fP"
+.ti -1c
+.RI "char * \fB_strtok\fP (char **holder, char *s, const char *delim)"
+.br
+.RI "\fIExtract tokens from strings. \fP"
+.ti -1c
+.RI "size_t \fB_sprintf\fP (int num, char **filledstr, const char *format,...)"
+.br
+.ti -1c
+.RI "char * \fB_trim\fP (char *str)"
+.br
+.RI "\fIStrips whitespaces from the beginning and end of a string. \fP"
+.ti -1c
+.RI "size_t \fB_strnlen\fP (const char *str, size_t maxlen)"
+.br
+.RI "\fIGNU like function for determining length of string due to maxlen. \fP"
+.ti -1c
+.RI "char * \fB_strndup\fP (char *str, size_t num)"
+.br
+.RI "\fIGNU like function for copying substring of limited length num. \fP"
+.ti -1c
+.RI "char * \fB_strtr\fP (char *str, char from, char to)"
+.br
+.RI "\fITranslates characters from into to in string str. \fP"
+.ti -1c
+.RI "int \fBmatch\fP (const char *string, char *pattern)"
+.br
+.RI "\fIFunction for matching string due to specified pattern (using rexex.h). \fP"
+.ti -1c
+.RI "int \fBlink_parse\fP (char *linkstr, \fBlnk\fP *link)"
+.br
+.RI "\fIParses http link and saves parsed info into \fBlnk\fP structure. \fP"
+.ti -1c
+.RI "void \fBcreate_rand_filename\fP (\fBlnk\fP *link)"
+.br
+.ti -1c
+.RI "void \fBmk_filename\fP (const char *resultdir, \fBlnk\fP *link)"
+.br
+.RI "\fIChecks resultdir if contains trailing slash (if not adds it) and creates full path to filename (consisted from link->hostname and link->rquri) by replacing denied characters (slash) in filename by _. \fP"
+.in -1c
+.SH "Define Documentation"
+.PP 
+.SS "#define LINK_REGEXP   '^(http://)?([^/]+)(/(([^/]+/)*([^/]+))?)?$'"
+.PP
+Definition at line 6 of file linkparser.h.
+.SH "Function Documentation"
+.PP 
+.SS "size_t _sprintf (int num, char ** filledstr, const char * format,  ...)"
+.PP
+Definition at line 62 of file linkparser.c.
+.SS "char* _strndup (char * str, size_t num)"
+.PP
+GNU like function for copying substring of limited length num. 
+.PP
+\fBReturns:\fP
+.RS 4
+new allocated sting of slecified length. 
+.RE
+.PP
+
+.PP
+Definition at line 128 of file linkparser.c.
+.SS "size_t _strnlen (const char * str, size_t maxlen)"
+.PP
+GNU like function for determining length of string due to maxlen. 
+.PP
+\fBReturns:\fP
+.RS 4
+size of string. 
+.RE
+.PP
+
+.PP
+Definition at line 117 of file linkparser.c.
+.SS "char* _strtok (char ** holder, char * s, const char * delim)"
+.PP
+Extract tokens from strings. 
+.PP
+Similar to strtok function but added holder to enable tokenize more strings across. 
+.PP
+\fBReturns:\fP
+.RS 4
+extraceted token. 
+.RE
+.PP
+
+.PP
+Definition at line 46 of file linkparser.c.
+.SS "char* _strtr (char * str, char from, char to)"
+.PP
+Translates characters from into to in string str. 
+.PP
+\fBReturns:\fP
+.RS 4
+modified string. 
+.RE
+.PP
+
+.PP
+Definition at line 236 of file linkparser.c.
+.SS "char* _trim (char * str)"
+.PP
+Strips whitespaces from the beginning and end of a string. 
+.PP
+\fBReturns:\fP
+.RS 4
+ponter to begining of trimmed string. 
+.RE
+.PP
+
+.PP
+Definition at line 21 of file linkparser.c.
+.SS "void create_rand_filename (\fBlnk\fP * link)"
+.PP
+.SS "int link_parse (char * linkstr, \fBlnk\fP * link)"
+.PP
+Parses http link and saves parsed info into \fBlnk\fP structure. 
+.PP
+\fBReturns:\fP
+.RS 4
+0 on success, else -1 (if linkstr is not valid http link) 
+.RE
+.PP
+
+.PP
+Definition at line 146 of file linkparser.c.
+.SS "int match (const char * string, char * pattern)"
+.PP
+Function for matching string due to specified pattern (using rexex.h). 
+.PP
+\fBReturns:\fP
+.RS 4
+0 on success, -1 on fail. 
+.RE
+.PP
+
+.PP
+Definition at line 194 of file linkparser.c.
+.SS "void mk_filename (const char * resultdir, \fBlnk\fP * link)"
+.PP
+Checks resultdir if contains trailing slash (if not adds it) and creates full path to filename (consisted from link->hostname and link->rquri) by replacing denied characters (slash) in filename by _. 
+.PP
+Definition at line 252 of file linkparser.c.
+.SS "void strtoprot (char * str, \fBprotocols\fP * prots)"
+.PP
+Converts string in str to protocols type contained in prots. 
+.PP
+Definition at line 97 of file linkparser.c.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for RDWGET from the source code.

@@ -1,0 +1,264 @@
+.TH "/home/rado/workspace/rdwget/src/httpclient.c" 3 "26 Feb 2009" "Version 1.0" "RDWGET" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/rado/workspace/rdwget/src/httpclient.c \- Simple HTTP client.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <sys/types.h>\fP
+.br
+\fC#include <stdlib.h>\fP
+.br
+\fC#include <stdio.h>\fP
+.br
+\fC#include <sys/socket.h>\fP
+.br
+\fC#include <netdb.h>\fP
+.br
+\fC#include <arpa/inet.h>\fP
+.br
+\fC#include <string.h>\fP
+.br
+\fC#include <unistd.h>\fP
+.br
+\fC#include <assert.h>\fP
+.br
+\fC#include 'httpclient.h'\fP
+.br
+\fC#include 'linkparser.h'\fP
+.br
+
+.SS "Defines"
+
+.in +1c
+.ti -1c
+.RI "#define \fBHTTP_BUFF_SIZE\fP   100"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBhttp_header_req\fP (\fBhttp_sockfd\fP sockfd, \fBlnk\fP *link)"
+.br
+.RI "\fISends request for header information to socket about link specified in \fBlnk\fP. \fP"
+.ti -1c
+.RI "int \fBhttp_header_res\fP (\fBhttp_sockfd\fP sockfd, \fBlnk_http_header\fP *linkh)"
+.br
+.RI "\fIRecieves header from http server, parses it and saves found information into linh. \fP"
+.ti -1c
+.RI "\fBhttp_statcode_grp\fP \fBhttp_str2statuscode_grp\fP (char *code)"
+.br
+.ti -1c
+.RI "\fBhttp_sockfd\fP \fBhttp_socket\fP (void)"
+.br
+.RI "\fICreates socket for http client. \fP"
+.ti -1c
+.RI "int \fBhttp_connect\fP (\fBhttp_sockfd\fP *sockfd, const \fBlnk\fP *link)"
+.br
+.RI "\fIConnects to socket to hostname specified in link. \fP"
+.ti -1c
+.RI "int \fBhttp_link_header\fP (\fBlnk\fP *link, \fBlnk_http_header\fP **linkhp)"
+.br
+.RI "\fIFunction obtains header data from http sever. \fP"
+.ti -1c
+.RI "int \fBhttp_chunk_req\fP (\fBhttp_sockfd\fP sockfd, \fBchunk_bounds\fP *bounds)"
+.br
+.RI "\fISends request for range data to socket specified in bounds structure. \fP"
+.ti -1c
+.RI "\fBstatcode\fP \fBlink_header_parse\fP (char *buff, \fBlnk_http_header\fP *linkh)"
+.br
+.RI "\fIParses http header contained in buffer (ended with '\\0' character). \fP"
+.ti -1c
+.RI "int \fBhttp_header_read\fP (\fBhttp_sockfd\fP sockfd, \fBheaderbufs\fP *hbufs)"
+.br
+.RI "\fIFunction is dedicated to insert header into buffer obtained from socket. \fP"
+.ti -1c
+.RI "int \fBhttp_chunk_res\fP (\fBhttp_sockfd\fP sockfd, char *memory, size_t memlen, \fBchunk_bounds\fP *bounds)"
+.br
+.RI "\fIRecieves data of range specified in bounds and writes it into memory buffer. \fP"
+.ti -1c
+.RI "int \fBhttp_link_write_chunk\fP (\fBchunk_bounds\fP *bounds)"
+.br
+.RI "\fIFunction obtains chunk data bounds from http sever and writes it into memory. \fP"
+.ti -1c
+.RI "int \fBhttp_close\fP (\fBhttp_sockfd\fP sockfd)"
+.br
+.RI "\fICloses http socket. \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "int \fBh_errno\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Simple HTTP client. 
+
+Simple HTTP client able to obtain header information and download files by range specifiers (if servers enables it. 
+.PP
+Definition in file \fBhttpclient.c\fP.
+.SH "Define Documentation"
+.PP 
+.SS "#define HTTP_BUFF_SIZE   100"
+.PP
+Definition at line 22 of file httpclient.c.
+.SH "Function Documentation"
+.PP 
+.SS "int http_chunk_req (\fBhttp_sockfd\fP sockfd, \fBchunk_bounds\fP * bounds)"
+.PP
+Sends request for range data to socket specified in bounds structure. 
+.PP
+\fBReturns:\fP
+.RS 4
+0 on success, -1 on fail. 
+.RE
+.PP
+
+.PP
+Definition at line 209 of file httpclient.c.
+.SS "int http_chunk_res (\fBhttp_sockfd\fP sockfd, char * memory, size_t memlen, \fBchunk_bounds\fP * bounds)"
+.PP
+Recieves data of range specified in bounds and writes it into memory buffer. 
+.PP
+Data were requested by function \fBhttp_chunk_req(http_sockfd sockfd, chunk_bounds* bounds)\fP. 
+.PP
+\fBReturns:\fP
+.RS 4
+0 on success, -1 on fail. 
+.RE
+.PP
+
+.PP
+Definition at line 365 of file httpclient.c.
+.SS "int http_close (\fBhttp_sockfd\fP sockfd)"
+.PP
+Closes http socket. 
+.PP
+\fBReturns:\fP
+.RS 4
+0 on success, -1 on fail. 
+.RE
+.PP
+
+.PP
+Definition at line 506 of file httpclient.c.
+.SS "int http_connect (\fBhttp_sockfd\fP * sockfd, const \fBlnk\fP * link)"
+.PP
+Connects to socket to hostname specified in link. 
+.PP
+\fBReturns:\fP
+.RS 4
+0 on success, -1 on fail. 
+.RE
+.PP
+
+.PP
+Definition at line 144 of file httpclient.c.
+.SS "int http_header_read (\fBhttp_sockfd\fP sockfd, \fBheaderbufs\fP * hbufs)"
+.PP
+Function is dedicated to insert header into buffer obtained from socket. 
+.PP
+Function inserts header into buffer (hbufs->hdata) and saves the specified lenght of header (hbufs->hsize (incl. end zero character '\\0')). Function reads header into buffer of specified size so if not only header was requested it saves the remain of read buffer (after ending header) into hbufs->remain. hbufs->rlen is length of remain (not ended with ). If only header was requested hbufs->remain is set to NULL and hbufs->rlen is zero. 
+.PP
+\fBReturns:\fP
+.RS 4
+0 on success, -1 on fail. 
+.RE
+.PP
+
+.PP
+Definition at line 307 of file httpclient.c.
+.SS "int http_header_req (\fBhttp_sockfd\fP sockfd, \fBlnk\fP * link)"
+.PP
+Sends request for header information to socket about link specified in \fBlnk\fP. 
+.PP
+\fBReturns:\fP
+.RS 4
+0 on success, -1 on fail. 
+.RE
+.PP
+
+.PP
+Definition at line 64 of file httpclient.c.
+.SS "int http_header_res (\fBhttp_sockfd\fP sockfd, \fBlnk_http_header\fP * linkh)"
+.PP
+Recieves header from http server, parses it and saves found information into linh. 
+.PP
+\fBReturns:\fP
+.RS 4
+0 on success, -1 on fail. 
+.RE
+.PP
+
+.PP
+Definition at line 85 of file httpclient.c.
+.SS "int http_link_header (\fBlnk\fP * link, \fBlnk_http_header\fP ** linkhp)"
+.PP
+Function obtains header data from http sever. 
+.PP
+Function connects to hostname specified in link, requests and receives header information, parses it and saves it into allocated structure \fBlnk_http_header\fP, saves pointer to this structure into linkhp. 
+.PP
+\fBReturns:\fP
+.RS 4
+0 on success, -1 on fail. 
+.RE
+.PP
+
+.PP
+Definition at line 189 of file httpclient.c.
+.SS "int http_link_write_chunk (\fBchunk_bounds\fP * bounds)"
+.PP
+Function obtains chunk data bounds from http sever and writes it into memory. 
+.PP
+Function connects to hostname specified in link, requests for range data (specified by rfc2616 (Range: bytes=firstbytepos - lastbytepos) receives data and saves it into memory specified in bounds->memory of length bounds->memlen (range size) 
+.PP
+\fBReturns:\fP
+.RS 4
+0 on success, -1 on fail. 
+.RE
+.PP
+
+.PP
+Definition at line 487 of file httpclient.c.
+.SS "\fBhttp_sockfd\fP http_socket (void)"
+.PP
+Creates socket for http client. 
+.PP
+\fBReturns:\fP
+.RS 4
+http_sockfg (socket filedescriptor) 
+.RE
+.PP
+
+.PP
+Definition at line 130 of file httpclient.c.
+.SS "\fBhttp_statcode_grp\fP http_str2statuscode_grp (char * code)"
+.PP
+Definition at line 106 of file httpclient.c.
+.SS "\fBstatcode\fP link_header_parse (char * buff, \fBlnk_http_header\fP * linkh)"
+.PP
+Parses http header contained in buffer (ended with '\\0' character). 
+.PP
+Function fills linkh with specified information and returns status code contained in header. 
+.PP
+\fBReturns:\fP
+.RS 4
+On fail returns -1 (if header doesn't contain status code (if header is invalid)) 
+.RE
+.PP
+
+.PP
+Definition at line 240 of file httpclient.c.
+.SH "Variable Documentation"
+.PP 
+.SS "int \fBh_errno\fP"
+.PP
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for RDWGET from the source code.

@@ -1,0 +1,118 @@
+.TH "/home/rado/workspace/rdwget/src/threadmanager.c" 3 "26 Feb 2009" "Version 1.0" "RDWGET" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/rado/workspace/rdwget/src/threadmanager.c \- Simple threaded manager of files and chunks.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdlib.h>\fP
+.br
+\fC#include <stdio.h>\fP
+.br
+\fC#include <pthread.h>\fP
+.br
+\fC#include <unistd.h>\fP
+.br
+\fC#include <string.h>\fP
+.br
+\fC#include <assert.h>\fP
+.br
+\fC#include <fcntl.h>\fP
+.br
+\fC#include <sys/stat.h>\fP
+.br
+\fC#include <sys/mman.h>\fP
+.br
+\fC#include 'threadmanager.h'\fP
+.br
+\fC#include 'httpclient.h'\fP
+.br
+\fC#include 'linkparser.h'\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBdowninfo\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void * \fBrun_download\fP (void *data)"
+.br
+.RI "\fIDownloads one link (function for one thread). \fP"
+.ti -1c
+.RI "void \fBthr_mgr_downloadallfiles\fP (\fBprgstx\fP *stx)"
+.br
+.RI "\fIDownloads all links specified in \fBprgstx\fP structure by creating thread for every link. \fP"
+.ti -1c
+.RI "void * \fBrun_download_chunk\fP (void *data)"
+.br
+.ti -1c
+.RI "int \fBthr_mgr_downloadallchunks\fP (const char *resultdir, \fBlnk\fP *link, \fBlnk_http_header\fP *linkh)"
+.br
+.RI "\fIFunction creates chunks due to link->chunknum parameter and creates one thread for every chunk and downloads the whole file into resultdir. \fP"
+.ti -1c
+.RI "int \fBcreate_chunk_bounds\fP (\fBchunk_bounds\fP **bounds, \fBlnk\fP *link, \fBlnk_http_header\fP *lnkh, \fBfile_fd\fP fd, \fBmaptbl\fP **maptable)"
+.br
+.RI "\fICreates chunk bounds and maps file into memory or assignes '\\0' to memory. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Simple threaded manager of files and chunks. 
+
+
+.PP
+Definition in file \fBthreadmanager.c\fP.
+.SH "Function Documentation"
+.PP 
+.SS "int create_chunk_bounds (\fBchunk_bounds\fP ** bounds, \fBlnk\fP * link, \fBlnk_http_header\fP * lnkh, \fBfile_fd\fP fd, \fBmaptbl\fP ** maptable)"
+.PP
+Creates chunk bounds and maps file into memory or assignes '\\0' to memory. 
+.PP
+Creates chunk bounds due to link, linkh parameters, maps file into memory and creates maptable containing list of mapping memory witch its sizes to enable use munmap after chunks will be downloaded. Mapping into memory is processed for last chunks (which have ranges at the end modulo MAX_MAP_SIZE). The first chunks will be assigned '\\0' into chunk memory. 
+.PP
+\fBReturns:\fP
+.RS 4
+0 on success, -1 on fail. 
+.RE
+.PP
+
+.PP
+Definition at line 243 of file threadmanager.c.
+.SS "void* run_download (void * data)"
+.PP
+Downloads one link (function for one thread). 
+.PP
+param data of type (\fBdowninfo\fP *). 
+.PP
+Definition at line 34 of file threadmanager.c.
+.SS "void* run_download_chunk (void * data)"
+.PP
+Definition at line 122 of file threadmanager.c.
+.SS "int thr_mgr_downloadallchunks (const char * resultdir, \fBlnk\fP * link, \fBlnk_http_header\fP * linkh)"
+.PP
+Function creates chunks due to link->chunknum parameter and creates one thread for every chunk and downloads the whole file into resultdir. 
+.PP
+\fBReturns:\fP
+.RS 4
+0 on success, -1 on fail. 
+.RE
+.PP
+
+.PP
+Definition at line 160 of file threadmanager.c.
+.SS "void thr_mgr_downloadallfiles (\fBprgstx\fP * stx)"
+.PP
+Downloads all links specified in \fBprgstx\fP structure by creating thread for every link. 
+.PP
+Definition at line 58 of file threadmanager.c.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for RDWGET from the source code.

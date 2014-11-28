@@ -1,0 +1,63 @@
+.TH "/home/rado/workspace/rdwget/src/threadmanager.h" 3 "26 Feb 2009" "Version 1.0" "RDWGET" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/rado/workspace/rdwget/src/threadmanager.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'defaults.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBthr_mgr_downloadallfiles\fP (\fBprgstx\fP *)"
+.br
+.RI "\fIDownloads all links specified in \fBprgstx\fP structure by creating thread for every link. \fP"
+.ti -1c
+.RI "int \fBthr_mgr_downloadallchunks\fP (const char *resultdir, \fBlnk\fP *link, \fBlnk_http_header\fP *linkh)"
+.br
+.RI "\fIFunction creates chunks due to link->chunknum parameter and creates one thread for every chunk and downloads the whole file into resultdir. \fP"
+.ti -1c
+.RI "int \fBcreate_chunk_bounds\fP (\fBchunk_bounds\fP **bounds, \fBlnk\fP *link, \fBlnk_http_header\fP *lnkh, \fBfile_fd\fP fd, \fBmaptbl\fP **mptbl)"
+.br
+.RI "\fICreates chunk bounds and maps file into memory or assignes '\\0' to memory. \fP"
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "int create_chunk_bounds (\fBchunk_bounds\fP ** bounds, \fBlnk\fP * link, \fBlnk_http_header\fP * lnkh, \fBfile_fd\fP fd, \fBmaptbl\fP ** maptable)"
+.PP
+Creates chunk bounds and maps file into memory or assignes '\\0' to memory. 
+.PP
+Creates chunk bounds due to link, linkh parameters, maps file into memory and creates maptable containing list of mapping memory witch its sizes to enable use munmap after chunks will be downloaded. Mapping into memory is processed for last chunks (which have ranges at the end modulo MAX_MAP_SIZE). The first chunks will be assigned '\\0' into chunk memory. 
+.PP
+\fBReturns:\fP
+.RS 4
+0 on success, -1 on fail. 
+.RE
+.PP
+
+.PP
+Definition at line 243 of file threadmanager.c.
+.SS "int thr_mgr_downloadallchunks (const char * resultdir, \fBlnk\fP * link, \fBlnk_http_header\fP * linkh)"
+.PP
+Function creates chunks due to link->chunknum parameter and creates one thread for every chunk and downloads the whole file into resultdir. 
+.PP
+\fBReturns:\fP
+.RS 4
+0 on success, -1 on fail. 
+.RE
+.PP
+
+.PP
+Definition at line 160 of file threadmanager.c.
+.SS "void thr_mgr_downloadallfiles (\fBprgstx\fP *)"
+.PP
+Downloads all links specified in \fBprgstx\fP structure by creating thread for every link. 
+.PP
+Definition at line 58 of file threadmanager.c.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for RDWGET from the source code.

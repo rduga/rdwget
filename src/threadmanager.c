@@ -154,7 +154,7 @@ run_download_chunk(void *data)
 /**
  * Function creates chunks due to link->chunknum parameter and creates one
  * thread for every chunk and downloads the whole file into resultdir.
- \return 0 on success, -1 on fail.
+ * \return 0 on success, -1 on fail.
  */
 int
 thr_mgr_downloadallchunks(const char *resultdir, lnk *link,

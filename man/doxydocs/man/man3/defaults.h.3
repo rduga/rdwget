@@ -1,0 +1,290 @@
+.TH "/home/rado/workspace/rdwget/src/defaults.h" 3 "26 Feb 2009" "Version 1.0" "RDWGET" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/rado/workspace/rdwget/src/defaults.h \- Main definitions of constants, enums and other types.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stddef.h>\fP
+.br
+\fC#include <stdio.h>\fP
+.br
+\fC#include <errno.h>\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBprgstx\fP"
+.br
+.ti -1c
+.RI "struct \fBlnk\fP"
+.br
+.ti -1c
+.RI "struct \fBmaptbl\fP"
+.br
+.ti -1c
+.RI "struct \fBlnk_http_header\fP"
+.br
+.ti -1c
+.RI "struct \fBchunk_bounds\fP"
+.br
+.ti -1c
+.RI "struct \fBheaderbufs\fP"
+.br
+.in -1c
+.SS "Defines"
+
+.in +1c
+.ti -1c
+.RI "#define \fBSTRTOOFF_T\fP   strtol"
+.br
+.ti -1c
+.RI "#define \fBstdlog\fP   stderr"
+.br
+.ti -1c
+.RI "#define \fBlog_ERROR\fP   'ERROR:'"
+.br
+.ti -1c
+.RI "#define \fBD_CHUNKS\fP   1"
+.br
+.ti -1c
+.RI "#define \fBD_RESULT_DIR\fP   './'"
+.br
+.ti -1c
+.RI "#define \fBD_NUMLINKS\fP   0"
+.br
+.ti -1c
+.RI "#define \fBD_LINKS\fP   NULL"
+.br
+.ti -1c
+.RI "#define \fBCHUNK_NUM_DEF\fP   1"
+.br
+.ti -1c
+.RI "#define \fBURI_BASENAME\fP   '/'"
+.br
+.ti -1c
+.RI "#define \fBPROTOCOL_HTTP\fP   'http://'"
+.br
+.ti -1c
+.RI "#define \fBPROTOCOL_FTP\fP   'ftp://'"
+.br
+.ti -1c
+.RI "#define \fBHTTP_VERSION\fP   'HTTP/1.1'"
+.br
+.ti -1c
+.RI "#define \fBHTTP_METHOD_GET\fP   'GET'"
+.br
+.ti -1c
+.RI "#define \fBHTTP_METHOD_HEAD\fP   'HEAD'"
+.br
+.ti -1c
+.RI "#define \fBHTTP_HEAD_CONTLEN\fP   'Content-Length:'"
+.br
+.ti -1c
+.RI "#define \fBHTTP_HEAD_CONTTYPE\fP   'Content-Type:'"
+.br
+.ti -1c
+.RI "#define \fBHTTP_CONTTYPE_DEF\fP   'text/plain'"
+.br
+.ti -1c
+.RI "#define \fBHTTP_STATUSCODE_OK\fP   200"
+.br
+.ti -1c
+.RI "#define \fBHTTP_STATUSCODE_PARTIAL\fP   206"
+.br
+.ti -1c
+.RI "#define \fBHTTP_STATUSCODE_BAD_RANGE\fP   416"
+.br
+.ti -1c
+.RI "#define \fBHTTP_PORT\fP   80"
+.br
+.ti -1c
+.RI "#define \fBHTTP_RQ_HOST\fP   'Host:'"
+.br
+.ti -1c
+.RI "#define \fBHTTP_RQ_RANGE_BYTES\fP   'Range: bytes='"
+.br
+.ti -1c
+.RI "#define \fBRANGE_BYTES_MAX_LEN\fP   12"
+.br
+.ti -1c
+.RI "#define \fBCRLF\fP   '\\r\\n'"
+.br
+.ti -1c
+.RI "#define \fBWS\fP   ' '"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef int \fBstatcode\fP"
+.br
+.ti -1c
+.RI "typedef int \fBhttp_sockfd\fP"
+.br
+.ti -1c
+.RI "typedef int \fBfile_fd\fP"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBprotocols\fP { \fBHTTP\fP, \fBFTP\fP, \fBUNKNOWN\fP }"
+.br
+.ti -1c
+.RI "enum \fBhttp_statcode_grp\fP { \fBSTAT_UNKNOWN\fP, \fBINFORM\fP, \fBSUCCESS\fP, \fBREDIRECT\fP, \fBCLIENT_ERR\fP, \fBSERVER_ERR\fP }"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "int \fBerrno\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Main definitions of constants, enums and other types. 
+
+
+.PP
+Definition in file \fBdefaults.h\fP.
+.SH "Define Documentation"
+.PP 
+.SS "#define CHUNK_NUM_DEF   1"
+.PP
+Definition at line 58 of file defaults.h.
+.SS "#define CRLF   '\\r\\n'"
+.PP
+Definition at line 83 of file defaults.h.
+.SS "#define D_CHUNKS   1"
+.PP
+Definition at line 32 of file defaults.h.
+.SS "#define D_LINKS   NULL"
+.PP
+Definition at line 36 of file defaults.h.
+.SS "#define D_NUMLINKS   0"
+.PP
+Definition at line 35 of file defaults.h.
+.SS "#define D_RESULT_DIR   './'"
+.PP
+Definition at line 33 of file defaults.h.
+.SS "#define HTTP_CONTTYPE_DEF   'text/plain'"
+.PP
+Definition at line 74 of file defaults.h.
+.SS "#define HTTP_HEAD_CONTLEN   'Content-Length:'"
+.PP
+Definition at line 71 of file defaults.h.
+.SS "#define HTTP_HEAD_CONTTYPE   'Content-Type:'"
+.PP
+Definition at line 72 of file defaults.h.
+.SS "#define HTTP_METHOD_GET   'GET'"
+.PP
+Definition at line 69 of file defaults.h.
+.SS "#define HTTP_METHOD_HEAD   'HEAD'"
+.PP
+Definition at line 70 of file defaults.h.
+.SS "#define HTTP_PORT   80"
+.PP
+Definition at line 79 of file defaults.h.
+.SS "#define HTTP_RQ_HOST   'Host:'"
+.PP
+Definition at line 80 of file defaults.h.
+.SS "#define HTTP_RQ_RANGE_BYTES   'Range: bytes='"
+.PP
+Definition at line 81 of file defaults.h.
+.SS "#define HTTP_STATUSCODE_BAD_RANGE   416"
+.PP
+Definition at line 78 of file defaults.h.
+.SS "#define HTTP_STATUSCODE_OK   200"
+.PP
+Definition at line 76 of file defaults.h.
+.SS "#define HTTP_STATUSCODE_PARTIAL   206"
+.PP
+Definition at line 77 of file defaults.h.
+.SS "#define HTTP_VERSION   'HTTP/1.1'"
+.PP
+Definition at line 68 of file defaults.h.
+.SS "#define log_ERROR   'ERROR:'"
+.PP
+Definition at line 25 of file defaults.h.
+.SS "#define PROTOCOL_FTP   'ftp://'"
+.PP
+Definition at line 67 of file defaults.h.
+.SS "#define PROTOCOL_HTTP   'http://'"
+.PP
+Definition at line 66 of file defaults.h.
+.SS "#define RANGE_BYTES_MAX_LEN   12"
+.PP
+Definition at line 82 of file defaults.h.
+.SS "#define stdlog   stderr"
+.PP
+Definition at line 24 of file defaults.h.
+.SS "#define STRTOOFF_T   strtol"
+.PP
+Definition at line 18 of file defaults.h.
+.SS "#define URI_BASENAME   '/'"
+.PP
+Definition at line 59 of file defaults.h.
+.SS "#define WS   ' '"
+.PP
+Definition at line 84 of file defaults.h.
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef int \fBfile_fd\fP"
+.PP
+Definition at line 94 of file defaults.h.
+.SS "typedef int \fBhttp_sockfd\fP"
+.PP
+Definition at line 93 of file defaults.h.
+.SS "typedef int \fBstatcode\fP"
+.PP
+Definition at line 91 of file defaults.h.
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "enum \fBhttp_statcode_grp\fP"
+.PP
+\fBEnumerator: \fP
+.in +1c
+.TP
+\fB\fISTAT_UNKNOWN \fP\fP
+.TP
+\fB\fIINFORM \fP\fP
+.TP
+\fB\fISUCCESS \fP\fP
+.TP
+\fB\fIREDIRECT \fP\fP
+.TP
+\fB\fICLIENT_ERR \fP\fP
+.TP
+\fB\fISERVER_ERR \fP\fP
+
+.PP
+Definition at line 86 of file defaults.h.
+.SS "enum \fBprotocols\fP"
+.PP
+\fBEnumerator: \fP
+.in +1c
+.TP
+\fB\fIHTTP \fP\fP
+.TP
+\fB\fIFTP \fP\fP
+.TP
+\fB\fIUNKNOWN \fP\fP
+
+.PP
+Definition at line 27 of file defaults.h.
+.SH "Variable Documentation"
+.PP 
+.SS "int \fBerrno\fP"
+.PP
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for RDWGET from the source code.
