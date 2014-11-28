@@ -1,0 +1,9 @@
+COMPILATION:
+
+requirements: linux, gcc comliper
+
+Program is able to compile under LINUX with gcc compiler.
+Move into Release directory. Type "make all".
+After successful compilation run file "rdwget" with specified options (options
+available in man page or if typing "./rdwget" without paramters.
+ 

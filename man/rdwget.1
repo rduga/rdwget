@@ -1,0 +1,65 @@
+.TH RDWGET 1 "26.2.2009"
+
+.SH NAME
+rdwget - Threaded wget like file download manager which downloads file specified in http link by chunks.
+
+.SH SYNOPSIS
+.B "rdwget [options] files..."
+
+.SH DESCRIPTION
+
+rdwget is threaded wget like file download manager with simultaneous
+download chunks for every link (HTTP server must send Content-Length
+and accept ranges of bytes (Accept-ranges: bytes)).
+
+This manager runs chunk-manager thread for every http link.
+Chunk-manager is thread which creates threads for downloading
+chunks (number of chunks is set by option -c or -chunks).
+First Chunk-manager sends request for head of link to server,
+then the file is created of size specified in header, calculated
+chunk bounds (with mapping into memory), consenquently created
+threads (every thread downloads its own chunk)sends request to
+server for specific range of link, then recevied data written
+into memory and at the end munmapped memory.If memory is unable 
+to map, it writes into file directly by write function.
+
+Downloaded filename consists of hostname and request uri where
+all slashes were replaced by _ character.
+
+basic parts of program:
+
+    * thread manager for downloading files
+    * thread manager for downloading chunks
+    * simple http client
+    * simple link parser and some supporting functions
+
+Used UNIX parts:
+
+    * file operations (we mapping file into mermory and writing chunk into memory instead of using write for time optimalization.
+    * threads (multithreaded downloading of files and chunks of file)
+    * network communication (http client communicates with remote http server)
+
+.SH OPTIONS
+
+.IP "-c or --chunks=num
+Downloads every http link in num chunks. (default is one chunk)
+.IP "-R or --resultdir=dir
+Result directory (where files will be downloaded).
+
+.SH COMPILATION
+requirements:
+
+    * linux
+    * gcc comliper
+    * make utility
+
+Program is able to compile under LINUX with GNU gcc compiler.
+Move into "Release" subdirectory. Type "make all".
+After successful compilation run file "rdwget" with specified options.
+
+.SH BUGS
+Bug reports mail me please on "Radovan Duga"<radooo.php5@gmail.com>
+	
+.SH AUTHOR
+Written by Radovan Duga as a credit program for Programming in Unix
+under GNU GPL license.
